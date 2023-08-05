@@ -17,7 +17,7 @@ public class ProgramaController {
     }
 
     @GetMapping("/{id}")
-    public Mono<Programa> getEProgramaById(@PathVariable Integer id) {
+    public Mono<Programa> getProgramaById(@PathVariable Integer id) {
         return programaService.findById(id);
     }
 
@@ -33,7 +33,7 @@ public class ProgramaController {
     }
 
     @PutMapping("/{id}")
-    public Mono<Programa> updateEstudiante(@PathVariable Integer id, @RequestBody Programa programa){
+    public Mono<Programa> updatePrograma(@PathVariable Integer id, @RequestBody Programa programa){
         return programaService.update(id, programa);
     }
 

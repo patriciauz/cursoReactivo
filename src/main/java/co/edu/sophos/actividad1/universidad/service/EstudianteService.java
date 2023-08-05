@@ -25,7 +25,7 @@ public class EstudianteService {
         this.programaService = programaService;
     }
 
-    public Mono<Estudiante> findByIdentificacion(Integer id) {
+    public Mono<Estudiante> findById(Integer id) {
         return estudianteRepository.findById(id)
                 .onErrorResume(throwable -> {
                     return Mono.empty();

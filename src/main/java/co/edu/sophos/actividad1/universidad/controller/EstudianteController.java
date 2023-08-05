@@ -19,7 +19,7 @@ public class EstudianteController {
 
     @GetMapping("/{id}")
     public Mono<Estudiante> getEstudianteById(@PathVariable Integer id) {
-        return estudianteService.findByIdentificacion(id);
+        return estudianteService.findById(id);
     }
 
 
