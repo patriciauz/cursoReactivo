@@ -29,6 +29,8 @@ dependencies {
 	implementation 'org.springframework.kafka:spring-kafka'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'io.r2dbc:r2dbc-h2'
+	implementation 'com.amazonaws:aws-java-sdk:1.12.521'
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'

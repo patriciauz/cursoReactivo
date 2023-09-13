@@ -45,6 +45,7 @@ public class NotaService {
 
     public Mono<Nota> save(Nota nota) {
 
+        this.validateValorNota(nota.getValor());
 
         return notaRepository.save(nota)
                 .onErrorResume(throwable -> {
@@ -57,6 +58,7 @@ public class NotaService {
     }
 
     public Mono<Nota> update(int id, Nota nota) {
+
         return notaRepository.findById(id).map(Optional::of).defaultIfEmpty(Optional.empty())
                 .flatMap(optionalNota -> {
                     if (optionalNota.isPresent()) {
@@ -95,6 +97,17 @@ public class NotaService {
                 })
                 .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "notas no borradas").getMostSpecificCause()));
+    }
+
+
+    private void validateValorNota(Integer nota){
+
+        if(nota>5.0){
+            new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "notas no borradas").getMostSpecificCause();
+        }
+
+
     }
 
 }

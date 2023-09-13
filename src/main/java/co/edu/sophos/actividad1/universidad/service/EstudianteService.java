@@ -48,7 +48,7 @@ public class EstudianteService {
     public Mono<Estudiante> save(Estudiante estudiante) {
 
 
-        Mono<Programa> programa = validatePrograma(estudiante);
+        Mono<Programa> programa = getProgramaByEstudiante(estudiante);
 
         return programa
                 .flatMap(programaEncontrado -> estudianteRepository.save(estudiante)
@@ -103,7 +103,7 @@ public class EstudianteService {
                         "estudiantes no borrados").getMostSpecificCause()));
     }
 
-    private Mono<Programa> validatePrograma(Estudiante estudiante){
+    private Mono<Programa> getProgramaByEstudiante(Estudiante estudiante){
 
        return programaService.findById(estudiante.getIdPrograma())
                 .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND,
