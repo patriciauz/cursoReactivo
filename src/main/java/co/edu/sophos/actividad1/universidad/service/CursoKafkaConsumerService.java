@@ -1,12 +1,14 @@
 package co.edu.sophos.actividad1.universidad.service;
 
+import co.edu.sophos.actividad1.universidad.config.KafkaConfig;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 public class CursoKafkaConsumerService {
-
-    private final Logger LOGGER = LoggerFactory.getLogger(ProductoKafkaConsumerService.class);
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
@@ -18,8 +20,8 @@ public class CursoKafkaConsumerService {
         ConsumerRecord<String, String> ultimoCurso;
         KafkaConfig kafkaConfig = new KafkaConfig();
         kafkaTemplate.setConsumerFactory(kafkaConfig.consumerFactory());
-        ultimoProducto = kafkaTemplate.receive(topico, 0, 0);
+        ultimoCurso = kafkaTemplate.receive(topico, 0, 0);
         String cursoRegistrado = Objects.requireNonNull(ultimoCurso.value());
-        return productoRecibido;
+        return cursoRegistrado;
     }
 }
