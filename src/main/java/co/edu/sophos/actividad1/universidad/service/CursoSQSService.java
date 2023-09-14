@@ -70,7 +70,7 @@ public class CursoSQSService {
         List<Message> productoMessages = receiveMessagesFromQueue(queueName, maxNumberMessages, waitTimeSeconds);
         for(Message message : productoMessages){
             if(!message.getMessageAttributes().isEmpty()) {
-                if (message.getMessageAttributes().get("Nombre").getStringValue().equals(nombreCurso)) {
+                if (message.getMessageAttributes().get("nombre").getStringValue().equals(nombreCurso)) {
                     Curso curso = new Curso(Integer.valueOf(message.getMessageAttributes().get("id").getStringValue()),
                             message.getMessageAttributes().get("nombre").getStringValue());
                     clienteSQS.deleteMessage(this.getQueueUrl(queueName), message.getReceiptHandle());

@@ -74,8 +74,8 @@ public class CursoController {
                 curso));
     }
 
-    @PostMapping("/aws/processCreditoByDescripcion")
-    public Mono<Curso> deleteCreditoFromQueueByDescripcion(@RequestBody Map<String, Object> requestBody){
+    @PostMapping("/aws/processCursoByNombre")
+    public Mono<Curso> deleteCursoFromQueueByNombre(@RequestBody Map<String, Object> requestBody){
         return cursoSQSService.deleteCursoMessageInQueue((String) requestBody.get("queueName"),
                 (Integer) requestBody.get("maxNumberMessages"),
                 (Integer) requestBody.get("waitTimeSeconds"),
