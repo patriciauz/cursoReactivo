@@ -23,6 +23,13 @@ public class CustomSecurityWebFluxConfiguration {
                 .httpBasic(Customizer.withDefaults())
                 .csrf(ServerHttpSecurity.CsrfSpec::disable);
 
+        serverHttpSecurity.authorizeExchange(exchanges -> exchanges
+                        .pathMatchers("/v2/curso/**").authenticated())
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
+                .httpBasic(Customizer.withDefaults())//Aqui permitimos peticiones HTTP (Navegador y Postman)
+                .csrf(ServerHttpSecurity.CsrfSpec::disable);//Esta linea es para evitar errores de token en los POST
+
+
         return serverHttpSecurity.build();
     }
 
